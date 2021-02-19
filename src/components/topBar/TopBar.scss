@@ -1,0 +1,55 @@
+@import '../../scss/index';
+
+
+
+.top-bar {
+    height: 50px;
+    background-color: $background-grey-dark-ligth;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+    &__left {
+        i {
+            font-size:  20px !important;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+
+
+        a {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            color: $font-ligth;
+
+
+            &:hover {
+                color: $primary-color
+            }
+
+
+
+            img {
+                width: 25px;
+                height: 25px;
+                margin-right: 10px;
+                border-radius: 50px;
+            }
+        }
+
+
+        i {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
