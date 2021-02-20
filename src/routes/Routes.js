@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 // pages ->
 import Home from '../pages/home';
 import Settings from '../pages/Settings';
+import Artist  from '../pages/artist';
+import Artists from '../pages/artists';
 
 
 export default function Routes(props) {
@@ -19,7 +21,11 @@ export default function Routes(props) {
 
             
             <Route path="/artists" exact>
-                <h1>Artistas</h1>
+                <Artists />
+            </Route>
+
+            <Route path="/artist/:id" exact>
+                <Artist />
             </Route>
 
             

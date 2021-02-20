@@ -43,6 +43,8 @@ export default function Home() {
                 <BasicSliderItems 
                     title="Ultimos Artistas"
                     data={ artist }
+                    folderImage={ "artist" }
+                    urlName={ "artist" }
                 />
                 <h2>mass....</h2>
             </div>

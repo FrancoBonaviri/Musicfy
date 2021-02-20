@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { map } from 'lodash'
 import Slider from 'react-slick';
-
+import { Link } from 'react-router-dom';
 import './BasicSliderItems.scss';
 import NoBannerImage from '../../../assets/png/no-image.png'
 
@@ -10,7 +10,7 @@ import NoBannerImage from '../../../assets/png/no-image.png'
 import firebase from '../../../utils/Firebase';
 import 'firebase/storage';
 
-export default function BasicSliderItems({ title, data }) {
+export default function BasicSliderItems({ title, data, folderImage, urlName }) {
 
     const settings = {
         dots: false,
@@ -34,7 +34,12 @@ export default function BasicSliderItems({ title, data }) {
                 {...settings}
             >
                 { map(data, item => (
-                    <RenderItem item={item} key={ item.id }/>
+                    <RenderItem 
+                        item={item} 
+                        key={ item.id } 
+                        folderImage={ folderImage }
+                        urlName={ urlName }
+                    />
                 ))}
 
             </Slider>
@@ -46,32 +51,35 @@ export default function BasicSliderItems({ title, data }) {
 
 
 
-function RenderItem({ item }) {
+function RenderItem({ item, folderImage, urlName }) {
 
     const [bannerUrl, setBannerUrl] = useState(null)
 
-    console.log(item);
     useEffect(() => {
         if( item.banner ){
 
             firebase
             .storage()
-            .ref(`artist/${ item.banner }`)
+            .ref(`${folderImage}/${ item.banner }`)
             .getDownloadURL().then( urlBanner => {
                 setBannerUrl( urlBanner );
             });
         } else { setBannerUrl(NoBannerImage) }
-    }, [ item ])
+    }, [ item, folderImage ])
 
     return ( 
-        <div className="basic-slider-items__list-item">
-            <div 
-                className="avatar"
-                style={{ backgroundImage: `url('${ bannerUrl }')`}}
-            />
+        <Link
+            to={`/${ urlName }/${ item.id }`}
+        >
+            <div className="basic-slider-items__list-item">
+                <div 
+                    className="avatar"
+                    style={{ backgroundImage: `url('${ bannerUrl }')`}}
+                />
 
-            <h3> { item.name } </h3>
-        </div>
+                <h3> { item.name } </h3>
+            </div>
+        </Link>
     )
 
 
