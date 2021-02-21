@@ -6,6 +6,8 @@ import Home from '../pages/home';
 import Settings from '../pages/Settings';
 import Artist  from '../pages/artist';
 import Artists from '../pages/artists';
+import Albums from '../pages/albums';
+import Album from '../pages/album';
 
 
 export default function Routes(props) {
@@ -26,6 +28,14 @@ export default function Routes(props) {
 
             <Route path="/artist/:id" exact>
                 <Artist />
+            </Route>
+
+            <Route path="/albums" exact>
+                <Albums />
+            </Route>
+
+            <Route path="/album/:id" exact>
+                <Album />
             </Route>
 
             

@@ -17,7 +17,7 @@ export default function Home() {
 
 
     const [artist, setArtist] = useState([]);
-
+    const [albums, setAlbums] = useState([]);
 
     useEffect(() => {
         const arrayArtist = [];
@@ -34,6 +34,20 @@ export default function Home() {
         })
     }, [])
 
+    useEffect(() => {
+        db.collection('albums')
+        .get()
+        .then( res => {
+            const arrayAlbum = [];
+            map(res.docs, item => {
+                const album = { id: item.id, ...item.data() };
+                arrayAlbum.push(album);
+            });;
+
+            setAlbums( arrayAlbum );
+        });
+    }, [])
+
 
 
     return (
@@ -46,7 +60,17 @@ export default function Home() {
                     folderImage={ "artist" }
                     urlName={ "artist" }
                 />
-                <h2>mass....</h2>
+
+
+                <BasicSliderItems 
+                    title="Ultimos albumes"
+                    data={ albums }
+                    folderImage={ "album" }
+                    urlName={ "album" }
+                />
+
+
+                {/* <h2>mass....</h2> */}
             </div>
         </>
     )

@@ -11,7 +11,7 @@ import './MenuLeft.scss';
 // Components ->
 import BasicModal from '../modal/basicModal';
 import AddArtistForm from '../artist/AddArtistForm';
-
+import AddAlbumForm from '../albums/AddAlbumForm'
 
 function MenuLeft(props) {
     const { user, location } = props;
@@ -39,9 +39,16 @@ function MenuLeft(props) {
     
     const handlerModal = ( modalType ) => {
         switch (modalType) {
+
             case "artists":
                 setTitleModal("Nuevo artista");
                 setContentModal(<AddArtistForm setShowModal={ setShowModal } />)
+                setShowModal(true)    
+            break;
+
+            case "album":
+                setTitleModal("Nuevo album");
+                setContentModal(<AddAlbumForm  setShowModal={ setShowModal }/>)
                 setShowModal(true)    
             break;
         
@@ -78,8 +85,18 @@ function MenuLeft(props) {
                         name="artists" 
                         active={activeMenu == "/artists"}
                     >
-                        <Icon name="music" />Artistas
+                        <Icon name="user" />Artistas
                     </Menu.Item>
+
+                    <Menu.Item
+                        as={ Link } 
+                        to="/albums"
+                        name="albums" 
+                        active={activeMenu == "/albums"}
+                    >
+                        <Icon name="window maximize outline" />Albumes
+                    </Menu.Item>
+
                 </div>
 
 
@@ -89,6 +106,9 @@ function MenuLeft(props) {
                 <div className="footer">
                     <Menu.Item onClick={ () => handlerModal("artists")}>
                         <Icon name="plus square outline" />Nuevo artista
+                    </Menu.Item>
+                    <Menu.Item onClick={ () => handlerModal("album")}>
+                        <Icon name="plus square outline" />Nuevo Album
                     </Menu.Item>
                     <Menu.Item onClick={ () => handlerModal("song")}>
                         <Icon name="plus square outline" />Nueva cancion

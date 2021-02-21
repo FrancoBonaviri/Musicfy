@@ -83,4 +83,28 @@ code {
   }
 
 
+  .ui.dropdown {
+    background-color: $background-grey-ligth;
+    font-size: 16px;
+    color: $font-ligth;
+    border: 0;
+
+
+    .search {
+      color: $font-ligth;
+    }
+
+
+    .menu{
+      background-color: $background-grey-ligth;
+      border: 0;
+
+      .item {
+        border: 0;
+        color: $font-ligth;
+      }
+    }
+  }
+
+
 }
